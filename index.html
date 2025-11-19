@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POST1</title>
+  <title>POST2</title>
 </head>
 <body>
 </body>
 <script>
   // 基本的なPOSTリクエスト
 async function sendUserData(userData) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,9 @@ const newUser = {
     email: 'tanaka@example.com',
     age: 28
 };
-
+alert('--1');
 sendUserData(newUser);
+alert(newUser);
 </script>
 </html>
+
