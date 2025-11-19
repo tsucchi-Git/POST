@@ -1,4 +1,52 @@
 <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>fetchの使い方</title>
+</head>
+<body>
+  <h1>Fetchの使い方3</h1>
+  <button onclick="navigate()">ページ遷移</button>
+</body>
+  <script>
+    //Var FileName='test.json';
+
+    getMarkerData();
+    function navigate(){
+      window.location.href='champ.html';
+    }
+    
+    function getMarkerData()　{
+    //urlからデータを読み込む
+      fetch('test2.json')
+    //データを受け取って、加工・成形
+      .then(response => {
+        //jsonはオブジェクト（連想配列）
+        return response.json()
+      })
+      //取得したデータは連想配列
+      .then(markerList => {
+        for (var i = 0; i < markerList.length; i++) {
+          alert('ファイルの読み込み成功しましたよ。' + markerList[i].id + ',' + markerList[i].name + ',' +　markerList[i].file + '\n')
+        //document.write(markerList[i]['id'])
+        }
+          //ローカルストレージに災害碑の基礎データを保存
+          if(window.localStorage){
+            //配列markerListをJSONデータに変換し、json_stringという変数に一括代入し、 ローカルストレージに書き込み　キーは「basic_data_fetch」
+            let json_string=JSON.stringify(markerList);   
+            localStorage.setItem('basic_data_fetch',json_string);
+          } 
+          
+        
+       })
+    //通信にエラーが発生した場合
+      .catch(error => {alert('ファイルを読み込むことができませんでした。')})
+    }
+</script>  
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -33,7 +81,8 @@ alert('--1');
 sendUserData(newUser);
 alert('--2');
 </script>
-</html>
+</html> -->
+
 
 
 
