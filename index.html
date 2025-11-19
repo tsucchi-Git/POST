@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>POST1</title>
 </head>
 <body>
-  const fs = require('fs');
-  const data = {
-   name: "太郎",
-   age: 30,
-   city: "東京"
-  };
-  // JSON形式に変換 (第2引数はリプレイサー、第3引数はインデント幅を指定できます。 null, 2を指定)
-  const jsonData = JSON.stringify(data, null, 2); // 見やすいフォーマットで出力
-fs.writeFileSync('output.json', jsonData, 'utf8');
-alert("JSONデータがoutput.jsonに保存されました！");
-
 </body>
+<script>
+  // 基本的なPOSTリクエスト
+async function sendUserData(userData) {
+    const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+    });
+
+    const result = await response.json();
+    return result;
+}
+
+// 使用例
+const newUser = {
+    name: '田中太郎',
+    email: 'tanaka@example.com',
+    age: 28
+};
+
+sendUserData(newUser);
+</script>
 </html>
