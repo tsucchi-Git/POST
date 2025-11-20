@@ -42,25 +42,26 @@
       .catch(error => {alert('ファイルを読み込むことができませんでした。')})
     }
     // 基本的なPOSTリクエスト
-    // async function sendUserData(userData) {
-    //     alert('--- 1 ---')
-    //     const response = await fetch('test2.json', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //     alert('--- 2 ---')
-    //         body: JSON.stringify(userData)
-    //     });
-    //     alert('--- 3 ---')
+    async function sendUserData(userData) {
+        alert('--- 1 ---')
+        const response = await fetch('test2.json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        alert('--- 2 ---')
+            body: JSON.stringify(userData)
+        });
+        alert('--- 3 ---')
     
-    //     const result = await response.json();
-    //     return result;
-    // }
+        const result = await response.json();
+        return result;
+    }
 
 </script>  
 </body>
 </html>
+
 
 
 
