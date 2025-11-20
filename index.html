@@ -5,8 +5,8 @@
   <title>fetch-POSTの使い方1</title>
 </head>
 <body>
-  <h1>Fetchの使い方3</h1>
-  <button onclick="navigate()">データの書込み</button>
+  //<h1>Fetchの使い方3</h1>
+  //<button onclick="navigate()">データの書込み</button>
 </body>
   <script>
     //Var FileName='test.json';
@@ -43,13 +43,16 @@
     }
     // 基本的なPOSTリクエスト
     async function sendUserData(userData) {
+        alert('--- 1 ---')
         const response = await fetch('test2.json', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
+        alert('--- 2 ---')
             body: JSON.stringify(userData)
         });
+        alert('--- 3 ---')
     
         const result = await response.json();
         return result;
@@ -58,6 +61,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
