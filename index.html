@@ -2,18 +2,18 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>fetchの使い方</title>
+  <title>fetch-POSTの使い方1</title>
 </head>
 <body>
   <h1>Fetchの使い方3</h1>
-  <button onclick="navigate()">ページ遷移</button>
+  <button onclick="navigate()">データの書込み</button>
 </body>
   <script>
     //Var FileName='test.json';
 
     getMarkerData();
     function navigate(){
-      window.location.href='champ.html';
+      //sendUserData(newUser);
     }
     
     function getMarkerData()　{
@@ -30,58 +30,35 @@
           alert('ファイルの読み込み成功しましたよ。' + markerList[i].id + ',' + markerList[i].name + ',' +　markerList[i].file + '\n')
         //document.write(markerList[i]['id'])
         }
-          //ローカルストレージに災害碑の基礎データを保存
-          if(window.localStorage){
-            //配列markerListをJSONデータに変換し、json_stringという変数に一括代入し、 ローカルストレージに書き込み　キーは「basic_data_fetch」
-            let json_string=JSON.stringify(markerList);   
-            localStorage.setItem('basic_data_fetch',json_string);
-          } 
-          
+        //データの追加
+          markerList[markerList.length].id=100;
+          markerList[markerList.length].name="姫路城";
+          markerList[markerList.length].file="100.png";
+        //データの送信
+        sendUserData(markerList);
         
        })
     //通信にエラーが発生した場合
       .catch(error => {alert('ファイルを読み込むことができませんでした。')})
     }
+    // 基本的なPOSTリクエスト
+    async function sendUserData(userData) {
+        const response = await fetch('test2.json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        });
+    
+        const result = await response.json();
+        return result;
+    }
+
 </script>  
 </body>
 </html>
 
-<!-- <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>POST6</title>
-</head>
-<body>
-</body>
-<script>
-  // 基本的なPOSTリクエスト
-async function sendUserData(userData) {
-    const response = await fetch('users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-    });
-
-    const result = await response.json();
-    alert('--3');
-    return result;
-}
-
-// 使用例
-const newUser = {
-    name: '田中太郎',
-    email: 'tanaka@example.com',
-    age: 28
-};
-alert('--1');
-sendUserData(newUser);
-alert('--2');
-</script>
-</html> -->
 
 
 
