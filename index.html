@@ -2,65 +2,83 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>fetch-POSTの使い方5</title>
+  <title>fetch-POSTの使い方10</title>
 </head>
 <body>
   <!-- <h1>Fetchの使い方3</h1>
   <button onclick="navigate()">データの書込み</button> -->
 </body>
   <script>
-    //Var FileName='test.json';
+const url = 'test3.json'; // データ送信先のURL
+const data = { username: 'exampleUser', password: 'examplePass' }; // 送信するデータ
 
-    getMarkerData();
-    function navigate(){
-      //sendUserData(newUser);
-    }
+fetch(url, {
+    method: 'POST', // POSTメソッドを使用
+    headers: {
+        'Content-Type': 'application/json', // JSON形式でデータを送信することを示す
+    },
+    body: JSON.stringify(data), // データをJSON文字列に変換して送信
+})
+.then(response => response.json()) // サーバーからの応答をJSON形式で処理
+.then(data => {
+    console.log('Success:', data); // 成功した場合の処理
+})
+.catch((error) => {
+    console.error('Error:', error); // エラーが発生した場合の処理
+});
     
-    function getMarkerData()　{
-    //urlからデータを読み込む
-      fetch('test2.json')
-    //データを受け取って、加工・成形
-      .then(response => {
-        //jsonはオブジェクト（連想配列）
-        return response.json()
-      })
-      //取得したデータは連想配列
-      .then(markerList => {
-        for (var i = 0; i < markerList.length; i++) {
-          alert('ファイルの読み込み成功しましたよ。' + markerList[i].id + ',' + markerList[i].name + ',' +　markerList[i].file + '\n')
-        //document.write(markerList[i]['id'])
-        }
-        //データの追加
-          markerList[3].id=100;
-          markerList[3].name="姫路城";
-          markerList[3].file="100.png";
-        //データの送信
-        sendUserData(markerList);
+    // //Var FileName='test.json';
+
+    // getMarkerData();
+    // function navigate(){
+    //   //sendUserData(newUser);
+    // }
+    
+    // function getMarkerData()　{
+    // //urlからデータを読み込む
+    //   fetch('test2.json')
+    // //データを受け取って、加工・成形
+    //   .then(response => {
+    //     //jsonはオブジェクト（連想配列）
+    //     return response.json()
+    //   })
+    //   //取得したデータは連想配列
+    //   .then(markerList => {
+    //     for (var i = 0; i < markerList.length; i++) {
+    //       alert('ファイルの読み込み成功しましたよ。' + markerList[i].id + ',' + markerList[i].name + ',' +　markerList[i].file + '\n')
+    //     //document.write(markerList[i]['id'])
+    //     }
+    //     //データの追加
+    //       markerList[3].id=100;
+    //       markerList[3].name="姫路城";
+    //       markerList[3].file="100.png";
+    //     //データの送信
+    //     sendUserData(markerList);
         
-       })
-    //通信にエラーが発生した場合
-      .catch(error => {alert('ファイルを読み込むことができませんでした。')})
-    }
-    // 基本的なPOSTリクエスト
-    async function sendUserData(userData) {
-        alert('--- 1 ---')
-        const response = await fetch('test2.json', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        alert('--- 2 ---')
-            body: JSON.stringify(userData)
-        });
-        alert('--- 3 ---')
+    //    })
+    // //通信にエラーが発生した場合
+    //   .catch(error => {alert('ファイルを読み込むことができませんでした。')})
+    // }
+    // // 基本的なPOSTリクエスト
+    // async function sendUserData(userData) {
+    //     alert('--- 1 ---')
+    //     const response = await fetch('test2.json', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //     alert('--- 2 ---')
+    //         body: JSON.stringify(userData)
+    //     });
+    //     alert('--- 3 ---')
     
-        const result = await response.json();
-        return result;
-    }
+    //     const result = await response.json();
+    //     return result;
+    // }
 
 </script>  
-</body>
 </html>
+
 
 
 
