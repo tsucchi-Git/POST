@@ -9,23 +9,35 @@
   <button onclick="navigate()">データの書込み</button> -->
 </body>
   <script>
-const url = 'test3.json'; // データ送信先のURL
-const data = { username: 'exampleUser', password: 'examplePass' }; // 送信するデータ
+fetch("data", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify({ name: "John", age: 30 }),
+})
+.then((response) => response.json())
+.then((data) => alert("Response:", data))
+.catch((error) => alert("Error:", error));
 
-fetch(url, {
-    method: 'POST', // POSTメソッドを使用
-    headers: {
-        'Content-Type': 'application/json', // JSON形式でデータを送信することを示す
-    },
-    body: JSON.stringify(data), // データをJSON文字列に変換して送信
-})
-.then(response => response.json()) // サーバーからの応答をJSON形式で処理
-.then(data => {
-    alert('Success:', data); // 成功した場合の処理
-})
-.catch((error) => {
-    alert('Error:', error); // エラーが発生した場合の処理
-});
+    
+// const url = 'test3.json'; // データ送信先のURL
+// const data = { username: 'exampleUser', password: 'examplePass' }; // 送信するデータ
+
+// fetch(url, {
+//     method: 'POST', // POSTメソッドを使用
+//     headers: {
+//         'Content-Type': 'application/json', // JSON形式でデータを送信することを示す
+//     },
+//     body: JSON.stringify(data), // データをJSON文字列に変換して送信
+// })
+// .then(response => response.json()) // サーバーからの応答をJSON形式で処理
+// .then(data => {
+//     alert('Success:', data); // 成功した場合の処理
+// })
+// .catch((error) => {
+//     alert('Error:', error); // エラーが発生した場合の処理
+// });
     
     // //Var FileName='test.json';
 
@@ -78,6 +90,7 @@ fetch(url, {
 
 </script>  
 </html>
+
 
 
 
